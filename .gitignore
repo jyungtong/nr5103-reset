@@ -8,3 +8,6 @@
 
 # macOS specific
 .DS_Store
+
+# Logs directory
+/logs/

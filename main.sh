@@ -1,5 +1,8 @@
-#!/bin/sh -e
+#!/bin/sh
 # set -x
+
+mkdir -p /var/log/app
+exec > >(ts '[%Y-%m-%d %H:%M:%S%z]' | tee -a /var/log/app/app.log) 2>&1
 
 if [ -z "$ROUTER_PASSWORD" ]; then
   echo "Error: ROUTER_PASSWORD environment variable is not set."
@@ -25,7 +28,7 @@ resetRouter() {
   sleep 2
 
   echo "logging out..."
-  curl --insecure "https://$NR5103E_IP/cgi-bin/UserLogout?sessionkey=$SESSIONKEY" --cookie $COOKIES_PATH -X POST
+  curl --insecure "https://$NR5103E_IP/cgi-bin/UserLogout?sessionkey=$SESSIONKEY" --cookie $COOKIES_PATH -X POST --silent
   rm $COOKIES_PATH
   echo "===DONE=== router connection reset"
 

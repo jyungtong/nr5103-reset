@@ -1,10 +1,9 @@
-version: '3.8'
-
 services:
   router-reset:
     build: .
-    image: yourusername/yourimagename:latest # Placeholder for Docker Hub image
-    network_mode: host
+    # image: yourusername/yourimagename:latest # Placeholder for Docker Hub image
     env_file:
       - .env # check .env.example
     restart: unless-stopped
+    volumes:
+      - ./logs:/var/log/app   # so you can read the file on the host

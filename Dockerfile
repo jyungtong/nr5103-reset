@@ -1,6 +1,6 @@
 FROM alpine:latest
 
-RUN apk add --no-cache curl jq
+RUN apk add --no-cache curl jq tzdata moreutils
 
 WORKDIR /app
 
