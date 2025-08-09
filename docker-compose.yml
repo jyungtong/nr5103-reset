@@ -1,7 +1,7 @@
 services:
   router-reset:
     build: .
-    # image: yourusername/yourimagename:latest # Placeholder for Docker Hub image
+    image: tuxtong/nr5103e-reset:latest
     env_file:
       - .env # check .env.example
     restart: unless-stopped
