@@ -6,4 +6,13 @@ services:
       - .env # check .env.example
     restart: unless-stopped
     volumes:
-      - ./logs:/var/log/app   # so you can read the file on the host
+      - ./logs:/var/log/app
+
+  logserver:
+    image: sebp/lighttpd
+    volumes:
+      - ./logs:/var/www/localhost/htdocs:ro
+      - ./lighttpd.conf:/etc/lighttpd/lighttpd.conf
+    ports:
+      - "8000:8000"
+    tty: true
