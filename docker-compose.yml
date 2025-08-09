@@ -1,0 +1,10 @@
+version: '3.8'
+
+services:
+  router-reset:
+    build: .
+    image: yourusername/yourimagename:latest # Placeholder for Docker Hub image
+    network_mode: host
+    env_file:
+      - .env # check .env.example
+    restart: unless-stopped
