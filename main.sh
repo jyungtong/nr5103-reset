@@ -23,8 +23,8 @@ resetRouter() {
   echo "==== set to SA (force disconnect): ${SESSIONKEY:-no session key}"
   sleep 3
 
-  SESSIONKEY="$(curl --insecure -X PUT "https://$NR5103E_IP/cgi-bin/DAL?oid=cellwan_band&sessionkey=$SESSIONKEY" --cookie $COOKIES_PATH --data-raw '{"INTF_Preferred_Access_Technology":"NR5G-NSA"}' --silent | jq '.sessionkey')"
-  echo "==== set to NSA: ${SESSIONKEY:-no session key}"
+  SESSIONKEY="$(curl --insecure -X PUT "https://$NR5103E_IP/cgi-bin/DAL?oid=cellwan_band&sessionkey=$SESSIONKEY" --cookie $COOKIES_PATH --data-raw '{"INTF_Preferred_Access_Technology":"Auto"}' --silent | jq '.sessionkey')"
+  echo "==== set to AUTO: ${SESSIONKEY:-no session key}"
   sleep 2
 
   echo "logging out..."
