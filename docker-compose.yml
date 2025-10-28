@@ -1,18 +1,20 @@
 services:
   router-reset:
-    build: .
     image: tuxtong/nr5103e-reset:latest
     env_file:
-      - .env # check .env.example
+      - /opt/nr5103-reset/.env # check .env.example
     restart: unless-stopped
     volumes:
-      - ./logs:/var/log/app
+      - logs:/var/log/app
 
   logserver:
     image: sebp/lighttpd
     volumes:
-      - ./logs:/var/www/localhost/htdocs:ro
-      - ./lighttpd.conf:/etc/lighttpd/lighttpd.conf
+      - logs:/var/www/localhost/htdocs:ro
+      - /opt/nr5103-reset/lighttpd.conf:/etc/lighttpd/lighttpd.conf
     ports:
       - "18000:8000"
     tty: true
+
+volumes:
+  logs:
